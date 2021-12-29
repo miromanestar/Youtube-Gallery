@@ -107,6 +107,12 @@ class YTGallery {
 
         data = await res.json()
 
+        if (data?.error) {
+            this.handleError(data.error, 'An issue occured while attempting to retrieve data from youtube.')
+            this.hide(this.elems.loader)
+            return
+        }
+
         for (const item of data.items) {
             if (item.snippet.title !== 'Private video')
                 videoIds.push(item.snippet.resourceId.videoId)
@@ -144,6 +150,12 @@ class YTGallery {
         })
 
         data = await res.json()
+
+        if (data?.error) {
+            this.handleError(data.error, 'An issue occured while attempting to retrieve data from youtube.')
+            this.hide(this.elems.loader)
+            return
+        }
 
         for (const item of data.items) {
             this.cache.pages[i - 1].push({
@@ -184,6 +196,12 @@ class YTGallery {
         })
 
         const data = await res.json()
+
+        if (data?.error) {
+            this.handleError(data.error, 'An issue occured while attempting to retrieve data from youtube.')
+            this.hide(this.elems.loader)
+            return
+        }
 
         return data
     }
