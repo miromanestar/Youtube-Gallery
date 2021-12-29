@@ -57,6 +57,8 @@ class YTGallery {
             elem.setAttribute('placeholder', 'Search...')
 
             elem.oninput = e => this.search(e)
+
+            this.hide(elem)
         }
 
         window.addEventListener('resize', e => this.styleColumns())
@@ -289,6 +291,9 @@ class YTGallery {
 
         this.elems.gallery.before(top)
         this.elems.gallery.after(bottom)
+
+        this.hide(top)
+        this.hide(bottom)
 
         this.elems.topButtons = top
         this.elems.bottomButtons = bottom
