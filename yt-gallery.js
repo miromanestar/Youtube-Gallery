@@ -304,7 +304,7 @@ class YTGallery {
         this.elems.backTop = backTop
         this.elems.backBottom = backBottom
 
-        this.elems.refresh = refresh
+        this.elems.refresh = refreshCont
         
         this.elems.infoTop = infoTop
         this.elems.infoBottom = infoBottom
