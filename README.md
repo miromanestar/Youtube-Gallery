@@ -6,7 +6,7 @@ Simple explanation:
 
 ```
 new YTGallery(playlistId, apiKey, elementId)
-```javascript
+```js
 
 Where playlistId is the youtube playlist ID, apiKey is your youtube API key, and elementId is the id of the element in which you would like the gallery to display.
 
