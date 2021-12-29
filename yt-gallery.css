@@ -1,3 +1,71 @@
+:root {
+    --ytgallery-primary: #cd4e4e;
+    --ytgallery-secondary: #6c757d;
+    --ytgallery-background: #252525;
+    --ytgallery-hover: #1c1c1c;
+    --ytgallery-contrast: #fff;
+}
+
+html {
+    background-color: var(--ytgallery-hover)
+}
+
+.api-input {
+    width: 100%;
+    line-height: 3;
+    background-color: var(--ytgallery-background);
+    border: none;
+    color: var(--ytgallery-contrast);
+    outline: none;
+    padding: 0 10px;
+    margin-bottom: 10px;
+}
+
+.ytgallery-search {
+    width: 100%;
+    line-height: 3;
+    background-color: var(--ytgallery-background);
+    border: none;
+    color: var(--ytgallery-contrast);
+    outline: none;
+    padding: 0 10px;
+    margin: 10px 0;
+}
+
+.ytgallery-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    font-family: "Montserrat", "Helvetica", "Arial", sans-serif;
+    color: var(--ytgallery-contrast)
+}
+
+.ytgallery-btn {
+    background-color: var(--ytgallery-background);
+    padding: 15px;
+    cursor: pointer;
+    margin: 5px;
+    transition: .2s;
+    user-select: none;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.ytgallery-info {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.ytgallery-btn:hover {
+    filter: brightness(0.9);
+}
+
+.ytgallery-btn.disabled {
+    filter: brightness(0.5);
+    cursor: default;
+}
+
 .ytgallery-gallery {
     display: flex;
     flex-wrap: wrap;
@@ -13,6 +81,10 @@
     margin-left: 1%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin-bottom: 10px;
+    transition: .2s;
+    text-decoration: none;
+    background-color: var(--ytgallery-background);
+    color: var(--ytgallery-contrast);
 }
 
 .ytgallery-video-container:focus {
@@ -20,8 +92,8 @@
 }
 
 .ytgallery-video-container:hover {
-    background-color: #F5F5F5;
-    transition: .2s;
+    transform: scale(1.05);
+    background-color: var(--ytgallery-accent);
 }
 
 .ytgallery-thumbnail-container {
@@ -34,39 +106,27 @@
 
 .ytgallery-video-thumbnail {
     object-fit: cover;
-    /*margin-top: -9.45%;*/
     width: 100%;
 }
 
 .ytgallery-video-title {
-    padding-top: 10px;
     padding-left: 10px;
     padding-right: 10px;
     height: 55px;
     line-height: 1.5em;
-    color: #cd4c4c;
     font-family: "Montserrat", "Helvetica", "Arial", sans-serif;
     margin-bottom: 0px;
 }
 
-.ytgallery-video-date {
-    display: flex;
-    float: left;
-    padding-left: 10px;
-    color: #cd4c4c;
-    font-family: "Montserrat", "Helvetica", "Arial", sans-serif;
-}
-
-.ytgallery-video-views {
-    display: flex;
-    float: right;
-    padding-right: 10px;
-    color: #cd4c4c;
+.ytgallery-meta-info {
+    padding-left: 5px;
+    color: var(--ytgallery-secondary);
     font-family: "Montserrat", "Helvetica", "Arial", sans-serif;
 }
 
 .ytgallery-video-duration {
     position: absolute;
+    margin: 0;
     top: 5px;
     right: 5px;
     color: #fff;
@@ -78,42 +138,45 @@
     font-family: "Montserrat", "Helvetica", "Arial", sans-serif;
 }
 
-.ytgallery-video-container:hover>p {
-    color: #4ccdcd;
-    transition: .2s;
+.ytgallery-meta {
+    display: flex;
+    justify-content: space-between;
 }
 
-#ytgallery-date-icon {
+.ytgallery-meta div {
     display: flex;
-    float: left;
-    line-height: 3 !important;
+    align-items: center;
     padding-left: 10px;
-    color: #575a5c;
+    padding-right: 10px;
 }
 
-#ytgallery-views-icon {
-    display: flex;
-    float: right;
-    padding-right: 10px;
-    line-height: 3 !important;
-    color: #575a5c;
+.ytgallery-meta-icon {
+    height: 1.2rem;
+    width: 1.2rem;
+    fill: var(--ytgallery-secondary);
+}
+
+.ytgallery-error {
+    text-align: center;
+    color: var(--ytgallery-contrast);
+    width: 100%;
+    font-family: "Montserrat", "Helvetica", "Arial", sans-serif;
 }
 
 .ytgallery-loader {
-    border: 16px solid #f3f3f3;
-    /* Light grey */
-    border-top: 16px solid #cd4c4c;
-    /* Blue */
+    border: 16px solid var(--ytgallery-background);
+    border-top: 16px solid var(--ytgallery-secondary);
     border-radius: 50%;
     width: 120px;
     height: 120px;
-    animation: spin 2s linear infinite;
+    animation: ytgallery-spin 2s linear infinite;
     margin-right: auto;
     margin-left: auto;
     margin-top: 30px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-@keyframes spin {
+@keyframes ytgallery-spin {
     0% {
         transform: rotate(0deg);
     }

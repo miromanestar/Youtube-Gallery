@@ -7,10 +7,17 @@
 </head>
 
 <body>
+
+    <input class="api-input" type="text" onchange="createGallery(this.value)" placeholder="API key here..." />
     <div id="gallery-showcase"></div>
 
+    <script src="fslightbox.js"></script>
     <script src="yt-gallery.js"></script>
     <script>
-        ytg = new YTGallery('PLHrYumIN6isRXe3SqY_Dr5y9fhK6JBNDS', 'AIzaSyBlL1hnwR7Pj7L1yImkyoIYkKbOwTmbd6o', 'gallery-showcase')
+        var createGallery = (key) => {
+            new YTGallery('PL4BrNFx1j7E6a6IKg8N0IgnkoamHlCHWa', key, 'gallery-showcase', {
+                maxResults: 10
+            })
+        }
     </script>
 </body>
