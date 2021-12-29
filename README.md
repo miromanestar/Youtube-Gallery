@@ -31,6 +31,9 @@ YTGallery also takes a fourth parameter as an object which includes optional par
 }
 ```
 
+## Demo
+You can see it on my website [here](https://miromanestar.com/projects/ytgallery) or play with it using your own API key [here](https://miromanestar.github.io/Youtube-Gallery/).
+
 ## Dependencies
 There are no absolute dependencies, but check out [fslightbox](https://fslightbox.com/) to enable ligthbox automatically.
 
