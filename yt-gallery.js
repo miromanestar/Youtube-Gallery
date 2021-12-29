@@ -294,6 +294,7 @@ class YTGallery {
 
         this.hide(top)
         this.hide(bottom)
+        this.hide(refreshCont)
 
         this.elems.topButtons = top
         this.elems.bottomButtons = bottom
