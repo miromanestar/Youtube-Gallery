@@ -109,7 +109,7 @@ class YTGallery {
 
         data = await res.json()
 
-        if (data?.error) {
+        if (data && data.error) {
             this.handleError(data.error, 'An issue occured while attempting to retrieve data from youtube.')
             this.hide(this.elems.loader)
             return
@@ -153,7 +153,7 @@ class YTGallery {
 
         data = await res.json()
 
-        if (data?.error) {
+        if (data && data.error) {
             this.handleError(data.error, 'An issue occured while attempting to retrieve data from youtube.')
             this.hide(this.elems.loader)
             return
@@ -199,7 +199,7 @@ class YTGallery {
 
         const data = await res.json()
 
-        if (data?.error) {
+        if (data && data.error) {
             this.handleError(data.error, 'An issue occured while attempting to retrieve data from youtube.')
             this.hide(this.elems.loader)
             return
