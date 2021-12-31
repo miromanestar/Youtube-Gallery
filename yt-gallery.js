@@ -367,11 +367,11 @@ class YTGallery {
             child.style.width = width
     }
 
-    hide = (el) => {
+    hide(el) {
         el.style.display = 'none'
     }
 
-    show = (el) => {
+    show(el) {
         el.style.display = ''
     }
 
