@@ -69,7 +69,7 @@ class YTGallery {
         this.checkCache()
     }
 
-    checkCache = () => {
+    checkCache() {
         if (!this.cache) {
             this.getPlaylistData()
             console.log(`Cache for \"${ this.cacheName }\" not found... building`)
@@ -89,7 +89,7 @@ class YTGallery {
 
     // ------ API FUNCTIONS ------
 
-    getPlaylistData = async (data, token) => {
+    async getPlaylistData(data, token) {
         let videoIds = data || []
 
         let url = this.buildUrl('https://www.googleapis.com/youtube/v3/playlistItems', {
@@ -130,7 +130,7 @@ class YTGallery {
         }
     }
 
-    buildCache = async (videoIds, data, iteration = 0) => {
+    async buildCache(videoIds, data, iteration = 0) {
         let i = iteration + 1
         let ids = videoIds.slice((i - 1) * this.maxResults, i * this.maxResults)
         this.cache = data || ({
@@ -186,7 +186,7 @@ class YTGallery {
         console.log(`Page ${ i } data has been retrieved.`)
     }
 
-    getPlaylistInfo = async () => {
+    async getPlaylistInfo() {
         let url = this.buildUrl('https://www.googleapis.com/youtube/v3/playlists', {
             key: this.apiKey,
             id: this.playlistId,
@@ -210,7 +210,7 @@ class YTGallery {
 
     // ------ RENDERING FUNCTIONS ------
 
-    renderItems = (items) => {
+    renderItems(items) {
         const item = ({ title, date, thumbnail, duration, views, id }) => `
         <a class="ytgallery-video-container" data-fslightbox href="https://www.youtube.com/watch?v=${ id }">
             <div class= "ytgallery-thumbnail-container">
@@ -245,7 +245,7 @@ class YTGallery {
             })
     }
 
-    insert = (el, name, parent) => {
+    insert(el, name, parent) {
         let temp = document.createElement(el)
         temp.classList.add(`ytgallery-${ name }`)
         this.elems[name] = temp
@@ -256,7 +256,7 @@ class YTGallery {
             parent.appendChild(temp)
     }
 
-    createButtons = () => {
+    createButtons() {
         let nextTop = document.createElement('div')
         nextTop.classList.add('ytgallery-btn')
         nextTop.innerHTML = 'Next'
@@ -310,7 +310,7 @@ class YTGallery {
         this.elems.infoBottom = infoBottom
     }
 
-    styleButtons = () => {
+    styleButtons() {
         const page = this.currentPage
         const pages = this.cache.numPages
 
@@ -344,7 +344,7 @@ class YTGallery {
         this.show(this.elems.refresh)
     }
 
-    styleColumns = () => {
+    styleColumns() {
         const width = window.innerWidth
 
         if (this.numColumns === '4' && width >= 1410)
@@ -359,7 +359,7 @@ class YTGallery {
     }
 
     //Set the width of all video items
-    setWidth = (width) => {
+    setWidth(width) {
         if (!this.elems.gallery)
             return
 
@@ -377,7 +377,7 @@ class YTGallery {
 
     // ------ INPUT HANDLER FUNCTIONS ------
     
-    paginate = (dir) => {
+    paginate(dir) {
         if (this.okayToPaginate) {
             if (dir === 'Back' && this.currentPage === 1 || dir === 'Next' && this.currentPage === this.cache.numPages)
                     return
@@ -391,7 +391,7 @@ class YTGallery {
         }
     }
 
-    refresh = () => {
+    refresh() {
         this.state = 'default'
         this.currentPage = 1
         this.elems.gallery.innerHTML = ''
@@ -402,7 +402,7 @@ class YTGallery {
         this.getPlaylistData()
     }
 
-    search = (e) => {
+    search(e) {
         const val = e.target.value
 
         if (val === '' && this.state ==='search') {
@@ -429,7 +429,7 @@ class YTGallery {
         }
     }
 
-    clickHandler = (e) => {
+    clickHandler(e) {
         if (e.target.matches('.ytgallery-btn')) {
             switch (e.target.innerHTML) {
                 case 'Next': this.paginate('Next'); break;
@@ -442,13 +442,13 @@ class YTGallery {
 
     // ------ UTILITY FUNCTIONS ------
 
-    buildUrl = (link, opts) => {
+    buildUrl(link, opts) {
         let url = new URL(link)
         url.search = new URLSearchParams(opts)
         return url
     }
 
-    getPageData = (index) => {
+    getPageData(index) {
         const pageRef = index || this.currentPage - 1
         return this.cache.pages[pageRef]
     }
@@ -458,7 +458,7 @@ class YTGallery {
         actualStartTime denotes when, if a video has been livestreamed, it began streaming.
         publishedAt is the time at which the video was officially published.
     */
-    getDate = (item) => {
+    getDate(item) {
         if (item.recordingDetails && item.recordingDetails.recordingDate != null) {
             return this.parseIsoToDate(item.recordingDetails.recordingDate)
         } else if (item.liveStreamingDetails && item.liveStreamingDetails.actualStartTime != null) {
@@ -470,7 +470,7 @@ class YTGallery {
         }
     }
 
-    parseIsoToDate = (s) => {
+    parseIsoToDate(s) {
         const date = new Date(s)
         const year = date.getFullYear()
         const month = date.toLocaleString('default', { month: 'long' })
@@ -479,7 +479,7 @@ class YTGallery {
         return `${ month } ${ day }, ${ year }`
     }
 
-    parseIsoToDuration = (duration, type) => {
+    parseIsoToDuration(duration, type) {
         switch (type) {
             case 'live': return 'LIVE'
             case 'upcoming': return 'UPCOMING'
@@ -505,11 +505,11 @@ class YTGallery {
             return `${ hours}:${ minutes }:${ seconds }`
     }
 
-    numberWithCommas = (num) => {
+    numberWithCommas(num) {
         return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     }
 
-    handleError = (error, msg) => {
+    handleError(error, msg) {
         console.error(error)
 
         if (this.elems) {
