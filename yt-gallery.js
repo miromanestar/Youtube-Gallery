@@ -1,5 +1,5 @@
 /*
-    Miro Manestar | December 28, 2021
+    Miro Manestar | December 31, 2021
     miroimanestar@gmail.com
     A simple script to display youtube playlists in a gallery.
 */
@@ -347,14 +347,14 @@ class YTGallery {
     styleColumns() {
         const width = window.innerWidth
 
-        if (this.numColumns === '4' && width >= 1410)
+        if (this.numColumns === 4 && width >= 1410)
             this.setWidth('23%')
-        else if (this.numColumns === '3' || width >= 1050)
+        else if (this.numColumns === 3 || width >= 1050)
             this.setWidth('31%')
         
-        if (this.numColumns === '2' || width < 1050)
+        if (this.numColumns === 2 || width < 1050)
             this.setWidth('48%')
-        if (this.numColumns === '1' || width <= 768)
+        if (this.numColumns === 1 || width <= 768)
             this.setWidth('100%')
     }
 
@@ -522,9 +522,9 @@ class YTGallery {
                 this.hide(this.elems.search)
         } else if (this.elId) {
             document.getElementById(this.elId).innerHTML = `
-            <div class="ytgallery-error">
-            ${ msg }
-            </div>
+                <div class="ytgallery-error">
+                ${ msg }
+                </div>
             `
         }
     }
