@@ -81,6 +81,11 @@ class YTGallery {
             this.getPlaylistData()
             console.log(`Cache for \"${ this.cacheName }\" is more than a day old... building`)
         } else {
+            if (this.cache.numPages === 0) {
+                this.handleError('No videos in playlist', 'No videos found in playlist.')
+                return
+            }
+            
             this.renderItems(this.getPageData())
             console.log(`Cache for \"${ this.cacheName }\" is les than a day old... using cache`)
         }
@@ -125,17 +130,17 @@ class YTGallery {
         if (data.nextPageToken) {
             this.getPlaylistData(videoIds, data.nextPageToken)
         } else {
-            console.log(`Playlist items successfully grabbed with ${ videoIds.length } items... grabbing item data.`);
+            if (videoIds.length === 0) {
+                this.handleError('No videos in playlist', 'No videos found in playlist.')
+                return
+            }
+            
+            console.log(`Playlist items successfully grabbed with ${ videoIds.length } items... grabbing item data.`)
             this.buildCache(videoIds)
         }
     }
 
     async buildCache(videoIds, data, iteration = 0) {
-        if (videoIds.length === 0) {
-            this.handleError('No videos in playlist', 'No videos found in playlist.')
-            return
-        }
-        
         let i = iteration + 1
         let ids = videoIds.slice((i - 1) * this.maxResults, i * this.maxResults)
         this.cache = data || ({
