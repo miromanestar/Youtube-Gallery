@@ -29,7 +29,7 @@ class YTGallery {
         //Optional parameters
         this.numColumns = opts.numColumns || 3
         this.maxResults = opts.maxResults || 5
-        this.searchEnabled = opts.searchEnabled || true
+        this.searchEnabled = opts.searchEnabled === undefined ? true : opts.searchEnabled 
         this.cacheLife = opts.cacheLife || 86400000
 
         //Set state variables
