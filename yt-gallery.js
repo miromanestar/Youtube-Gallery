@@ -101,7 +101,7 @@ class YTGallery {
         })
 
         const res = await fetch(url).catch(error => {
-            this.handleError(error, 'An issue occured while attempting to retrieve data from youtube')
+            this.handleError(error, 'A problem occured while retrieving data from Youtube.')
             this.hide(this.elems.loader)
         })
 
@@ -110,7 +110,7 @@ class YTGallery {
         data = await res.json()
 
         if (data && data.error) {
-            this.handleError(data.error, 'An issue occured while attempting to retrieve data from youtube.')
+            this.handleError(data.error, 'A problem occured while retrieving data from Youtube.')
             this.hide(this.elems.loader)
             return
         }
@@ -131,6 +131,11 @@ class YTGallery {
     }
 
     async buildCache(videoIds, data, iteration = 0) {
+        if (videoIds.length === 0) {
+            this.handleError('No videos in playlist', 'No videos found in playlist.')
+            return
+        }
+        
         let i = iteration + 1
         let ids = videoIds.slice((i - 1) * this.maxResults, i * this.maxResults)
         this.cache = data || ({
@@ -148,13 +153,13 @@ class YTGallery {
         })
 
         const res = await fetch(url).catch(error => {
-            this.handleError(error, 'An issue occured while attempting to retrieve data from youtube')
+            this.handleError(error, 'A problem occured while retrieving data from Youtube.')
         })
 
         data = await res.json()
 
         if (data && data.error) {
-            this.handleError(data.error, 'An issue occured while attempting to retrieve data from youtube.')
+            this.handleError(data.error, 'A problem occured while retrieving data from Youtube.')
             this.hide(this.elems.loader)
             return
         }
@@ -194,13 +199,13 @@ class YTGallery {
         })
 
         const res = await fetch(url).catch(error => {
-            this.handleError(error, 'An issue occured while attempting to retrieve data from youtube')
+            this.handleError(error, 'A problem occured while retrieving data from Youtube.')
         })
 
         const data = await res.json()
 
         if (data && data.error) {
-            this.handleError(data.error, 'An issue occured while attempting to retrieve data from youtube.')
+            this.handleError(data.error, 'A problem occured while retrieving data from Youtube.')
             this.hide(this.elems.loader)
             return
         }
@@ -516,6 +521,7 @@ class YTGallery {
             this.elems.gallery.innerHTML = msg
             this.hide(this.elems.bottomButtons)
             this.hide(this.elems.topButtons)
+            this.hide(this.elems.loader)
             this.show(this.elems.refresh)
             
             if (this.searchEnabled)
