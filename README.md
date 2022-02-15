@@ -22,7 +22,7 @@ There's also fancybox support. All you need to do is include `fslightbox.js` and
 
 YTGallery also takes a fourth parameter as an object which includes optional parameters.
 
-```json
+```js
 {
     numColumns, //Can be 1-4. Default: 3
     maxResults, //Can be 1-50. Default: 10
