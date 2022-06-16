@@ -2,7 +2,7 @@
 ### No jQuery, no Bootstrap
 
 A while ago, I made a youtube gallery viewer. It worked pretty well, save for several major problems.
-- The first of which was that it polluted the global namespace. `var` was being used everywhere and everythingw as defined globally.
+- The first of which was that it polluted the global namespace. `var` was being used everywhere and everything was defined globally.
 - Second, you could only have one active instance per page at a time as a consequence, since they would all override each other.
 - Third, it required explicit HTML to be created by the user. This was annoying and was also part of the reason you could only have one active instance per page, since the element IDs used for event triggers would conflict.
 - Fourth, it relied on jQuery to work.
