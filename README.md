@@ -13,7 +13,7 @@ Finally, it's also much easier to use, as shown below.
 
 ## How to use
 ```js
-new YTGallery(playlistId, apiKey, elementId)
+new YTGallery(playlistId, apiKey, elementId, options)
 ```
 
 Where playlistId is the youtube playlist ID, apiKey is your youtube API key, and elementId is the id of the element in which you would like the gallery to display.
